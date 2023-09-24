@@ -23,6 +23,3 @@ class cls_template_llm_tokens:
 
     def is_valid_template(self, prompt: str):
         return self.__instruction_start in prompt or self.__instruction_end in prompt or self.__user_end in prompt or self.__llm_end in prompt
-
-test = cls_template_llm_tokens()
-test.create_llm_msg("")

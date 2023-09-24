@@ -3,8 +3,7 @@ import asyncio
 from classes.cls_template_llm_tokens import cls_template_llm_tokens
 from classes.cls_template_reponse_structures import \
     cls_template_reponse_structures
-
-from ..client.websocket_client import send_request
+from client.websocket_client import send_request
 
 
 class cls_llm_host_interface():

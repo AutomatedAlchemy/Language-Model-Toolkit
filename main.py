@@ -136,7 +136,6 @@ def execute_script(script_name = "test.py"):
     else:
         return output
     
-    
 def verify_functionality(goals, current_output_state):
     script = llm.prompt_for_structure(current_output_state, cls_template_reponse_structures.extract_script())
     save_script(script)

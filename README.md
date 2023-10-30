@@ -4,17 +4,30 @@ Welcome to the (Local)-Language-Model-Toolkit, an open-source framework designed
 
 # Getting Started
 
-## Getting Started
-    1.Rename .env.example to .env, insert the path of you local language models (ex.: "..\text-generation-webui-main\models") and/or insert your OpenAI token.
-    2.Manually launch the llm.api.py to run in the background and serve models.
-    3.Run your project by execute the main.py file (ensure llm.api.py is active for local LLM support). This will print out all available models (local and OpenAI).
-    3.To start a custom project, it's recommended to begin by implementing and experimenting in the main.py file.
+## 1. Install the Required Dependencies
 
-    NOTES:
-    When executing the main.py file all available models (OPENAI and local) will be printed. To use a model, insert its name into the "cls_llm_host_interface" class!
+Before you begin, make sure to install the necessary dependencies listed in the `requirements.txt` file. You can do this using `pip`. Open your terminal or command prompt, navigate to the project directory, and run the following command:
+    pip install -r requirements.txt
 
-## Project Execution
+This command will install all the required packages for your project.
 
+## 2. Configure Environment
+
+1. Rename `.env.example` to `.env`.
+2. Insert the path of your local language models (e.g., `..\text-generation-webui-main\models`) and/or insert your OpenAI token.
+
+## 3. Start the Local Language Model Server
+
+Manually launch the `llm.api.py` to run in the background and serve local language models.
+
+## 4. Run Your Project
+
+Run your project by executing the `main.py` file (ensure `llm.api.py` is active for local LLM support). This will print out all available models (local and OpenAI).
+
+## 5. Custom Projects
+
+To start a custom project, it's recommended to begin by implementing and experimenting in the `main.py` file.
+Pick a model, by inserting its name into the "cls_llm_host_interface" class!
 
 # Contributing
 
@@ -23,6 +36,5 @@ I'd love to hear what you think about this project! Dive in, propose/(commit) ch
 # License
 
 This project is open source and is provided as-is. You are free to use it at your discretion. Please review the LICENSE file for more details.
-
 
 Enjoy!

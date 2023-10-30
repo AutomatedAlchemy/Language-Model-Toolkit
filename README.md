@@ -24,9 +24,9 @@ Manually launch the `llm.api.py` to run in the background and serve local langua
 
 Run your project by executing the `main.py` file (ensure `llm.api.py` is active for local LLM support). This will print out all available models (local and OpenAI).
 
-## 5. Custom Projects
+## 5. Customize Project
 
-To start a custom project, it's recommended to begin by implementing and experimenting in the `main.py` file.
+To develop a custom project, it's recommended to begin by implementing and experimenting in the `main.py` file.
 Pick a model, by inserting its name into the "cls_llm_host_interface" class!
 
 # Contributing

@@ -6,10 +6,11 @@ from typing import Dict, List, Optional
 
 import torch
 import websockets
-from decouple import config
+from dotenv import load_dotenv
 from transformers import AutoTokenizer, pipeline
 
-model_directory: str = config("LOCAL_LLM_DIRECTORY")
+load_dotenv()
+model_directory = os.getenv("LOCAL_LLM_DIRECTORY")
 
 
 class LLMHost:
@@ -39,8 +40,8 @@ class LLMHost:
             print(f"Failed to load model: {str(e)}")
 
     def prompt(self, messages_json: str, max_new_tokens) -> str:
-        if self.context_length:
-            messages_json = messages_json[-self.context_length :]
+        # if self.context_length:
+        #     messages_json = messages_json[-self.context_length :]
         try:
             with open("./cache/text_generations_cache.json", "r") as json_file:
                 self.prompt_responses = json.load(json_file)

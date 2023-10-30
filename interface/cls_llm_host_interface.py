@@ -3,12 +3,13 @@ import json
 import os
 
 import openai
-from decouple import config
+from dotenv import load_dotenv
 
 from interface.cls_llm_messages import Chat, Role
 from websocket_client.websocket_client import prompt_model
 
-openai.api_key = config("OPENAI_API_KEY")
+load_dotenv()
+model_directory = os.getenv("OPENAI_API_KEY")
 
 
 class cls_llm_host_interface:

@@ -16,7 +16,7 @@ This command will install all the required packages for your project.
 ## 2. Configure Environment
 
 1. Rename `.env.example` to `.env`.
-2. Insert the path of your local language models (e.g., `..\text-generation-webui-main\models`) and/or insert your OpenAI token.
+2. Insert the path of your local language models (e.g., `..\text-generation-webui-main\models`) and/or insert your OpenAI token into the `.env` file.
 
 ## 3. Start the Local Language Model Server
 

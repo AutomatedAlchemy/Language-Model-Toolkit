@@ -4,9 +4,6 @@ Welcome to the (Local)-Language-Model-Toolkit, an open-source framework designed
 
 # Getting Started
 
-## Local Language Models
-
-
 ## Getting Started
     1.Rename .env.example to .env, insert the path of you local language models (ex.: "..\text-generation-webui-main\models") and/or insert your OpenAI token.
     2.Manually launch the llm.api.py to run in the background and serve models.

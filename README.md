@@ -7,7 +7,7 @@ Welcome to the (Local)-Language-Model-Toolkit, an open-source framework designed
 ## 1. Install the Required Dependencies
 
 Before you begin, make sure to install the necessary dependencies listed in the `requirements.txt` file. You can do this using `pip`. Open your terminal or command prompt, navigate to the project directory, and run the following command:
-    pip install -r requirements.txt
+$ pip install -r requirements.txt
 
 This command will install all the required packages for your project.
 
@@ -36,5 +36,6 @@ I'd love to hear what you think about this project! Dive in, propose/(commit) ch
 # License
 
 This project is open source and is provided as-is. You are free to use it at your discretion. Please review the LICENSE file for more details.
+
 
 Enjoy!

@@ -1,6 +1,6 @@
 # Welcome to the (Local)-Language-Model-Toolkit
 
-Welcome to the (Local)-Language-Model-Toolkit, an open-source framework designed to serve as a template for building advanced language model tools. Whether you're a seasoned developer or a newcomer eager to automate tasks requiring contextual understanding, this project is tailored to your needs.
+Welcome to the (Local)-Language-Model-Toolkit, an open-source framework designed to serve as a template for building language model tools. Whether you're a seasoned developer or a newcomer eager to automate tasks requiring contextual understanding, this project may just be what you need.
 
 # Getting Started
 

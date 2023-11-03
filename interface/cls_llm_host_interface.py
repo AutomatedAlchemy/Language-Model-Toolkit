@@ -6,41 +6,52 @@ import openai
 from dotenv import load_dotenv
 
 from interface.cls_llm_messages import Chat, Role
-from websocket_client.websocket_client import prompt_model
+from websocket_client.websocket_client import ModelPrompterClient
 
 load_dotenv()
-model_directory = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 class cls_llm_host_interface:
     def __init__(self, model: str):
         self.model = model
+        if not (os.path.exists("./cache/text_generations_cache.json")):
+            with open("./cache/text_generations_cache.json", "w") as cache_file:
+                cache_file.write("[]")
 
-    def _get_cached_text_generation(self, chat: Chat, model):
-        for entry in self.text_generations:
-            if entry.get("messages") == str(chat) and entry.get("model") == model:
+    def _get_cached_text_generations(self):
+        with open("./cache/text_generations_cache.json", "r") as json_file:
+            json_text: str = json_file.read()
+        text_generations = json.loads(json_text)
+        return text_generations
+
+    def _get_cached_text_generation(self, chat: Chat):
+        text_generations = self._get_cached_text_generations()
+        for entry in text_generations:
+            if entry.get("messages") == str(chat) and entry.get("model") == self.model:
                 return entry.get("generated_text")
         return None
 
-    def _add_to_cache(self, chat: Chat, model, generated_text):
-        self.text_generations.append({"model": model, "messages": str(chat), "generated_text": generated_text})
+    def _add_to_cache(self, chat: Chat, generated_text: str):
+        text_generations = self._get_cached_text_generations()
+        text_generations.append({"model": self.model, "messages": str(chat), "generated_text": generated_text})
         with open("./cache/text_generations_cache.json", "w") as json_file:
-            json.dump(self.text_generations, json_file, indent=4)
+            json.dump(text_generations, json_file, indent=4)
 
-    def _send_prompt(self, chat: Chat, max_new_tokens: int, model="gpt-3.5-turbo") -> str:
-        if model != "gpt-3.5-turbo":
-            return asyncio.get_event_loop().run_until_complete(self.prompt_model(str(chat), model, max_new_tokens))
+    def _send_prompt(self, chat: Chat, max_new_tokens: int) -> str:
+        if self.model != "gpt-3.5-turbo":
+            return asyncio.get_event_loop().run_until_complete(ModelPrompterClient().prompt_model(str(chat), self.model, max_new_tokens))
 
-        cached_text = self._get_cached_text_generation(chat, model)
+        cached_text = self._get_cached_text_generation(chat, self.model)
         if cached_text is not None:
             print(cached_text)
             return cached_text
 
-        response = openai.ChatCompletion.create(model=model, messages=chat.to_dict(), max_tokens=max_new_tokens)
+        response = openai.ChatCompletion.create(model=self.model, messages=chat.to_dict(), max_tokens=max_new_tokens)
         generated_text = response.choices[0].message.content
         print(generated_text)
 
-        self._add_to_cache(chat, model, generated_text)
+        self._add_to_cache(chat, self.model, generated_text)
 
         return generated_text
 

@@ -1,0 +1,7 @@
+[
+    {
+        "model": "gpt-3.5-turbo",
+        "messages": "[{\"role\": \"user\", \"content\": \"How are you feeling, little ai?\"}, {\"role\": \"assistant\", \"content\": \"\"}]",
+        "generated_text": "As an AI, I don't have feelings, but I'm here to assist you with any questions or tasks you have."
+    }
+]

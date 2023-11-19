@@ -1,43 +1,42 @@
 # Welcome to the (Local)-Language-Model-Toolkit
 
-Welcome to the (Local)-Language-Model-Toolkit, an open-source framework designed to serve as a template for building language model tools. Whether you're a seasoned developer or a newcomer eager to automate tasks requiring contextual understanding, this project may just be what you need.
+Welcome to the (Local)-Language-Model-Toolkit, an open-source framework designed for integrating advanced language models into your applications. This toolkit is ideal for both experienced developers and beginners interested in leveraging the power of language models for automation and contextual understanding.
 
-# Getting Started
+## Getting Started
 
-## 1. Install the Required Dependencies
+### 1. Install the Required Dependencies
 
-Before you begin, make sure to install the necessary dependencies listed in the `requirements.txt` file. You can do this using `pip`. Open your terminal or command prompt, navigate to the project directory, and run the following command:
-```cmd
+To set up your environment, first install the necessary dependencies as listed in the `requirements.txt` file. Use `pip` for installation:
+
 pip install -r requirements.txt
-```
 
-This command will install all the required packages for your project.
+This command installs all the required packages for the project.
 
-## 2. Configure Environment
+### 2. Configure Environment
+
+The environment setup is now streamlined:
 
 1. Rename `.env.example` to `.env`.
-2. Insert the path of your local language models (e.g., `..\text-generation-webui-main\models`) and/or insert your OpenAI token into the `.env` file.
+2. In the `.env` file, only insert your OpenAI API key, as this is now solely used for authenticating with OpenAI.
 
-## 3. Start the Local Language Model Server
+### 3. Set Up Ollama with Docker
 
-Manually launch the `llm.api.py` to run in the background and serve local language models.
+Instead of using `llm.api.py`, the project now employs Ollama, running in a Docker container. To interface with it, use the REST API provided by Ollama. If you have the Docker container installed, it will automatically start when stopped by the project.
 
-## 4. Run Your Project
+### 4. Run Your Project
 
-Run your project by executing the `main.py` file (ensure `llm.api.py` is active for local LLM support). This will print out all available models (local and OpenAI).
+Execute the `main.py` file to run your project. With the integration of Ollama, local language model support is automatically managed. The system will fetch and list all available models, both locally and from OpenAI.
 
-## 5. Customize Project
+### 5. Customize Your Project
 
-To develop a custom project, it's recommended to begin by implementing and experimenting in the `main.py` file.
-Pick a model by inserting its name into the "cls_llm_host_interface" class!
+For custom development, start by experimenting within the `main.py` file. Ollama will automatically download any model that is not available locally but exists on the Ollama model hub.
 
-# Contributing
+## Contributing
 
-I'd love to hear what you think about this project! Dive in, propose/(commit) changes, or simply share your thoughts. Feedback is highly encouraged.
+Your thoughts and contributions to this project are invaluable. Feel free to dive in, propose changes, commit updates, or share your feedback. All forms of engagement are highly encouraged.
 
-# License
+## License
 
-This project is open source and is provided as-is. You are free to use it at your discretion.
+This project remains open source and is provided as-is. You have the freedom to use and adapt it according to your needs.
 
-
-Enjoy!
+Enjoy your journey with the (Local)-Language-Model-Toolkit!

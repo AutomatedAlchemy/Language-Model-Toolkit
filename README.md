@@ -13,10 +13,11 @@ Welcome to the (Local)-Language-Model-Toolkit, an open-source framework designed
   - Rename `.env.example` to `.env`.
   - Add your OpenAI API key.
 
-### 3. **Set Up Ollama with Docker**
-- The project now uses Ollama, running in a Docker container, to manage language models.
+### 3. **Install and Set Up Ollama with Docker**
+- Ensure Ollama is installed on your system.
+- The project uses Ollama, running in a Docker container, to manage language models.
 - Ollama is interfaced through its REST API.
-- Docker container for Ollama starts automatically if stopped by the project.
+- If the Ollama Docker container is not running, the project will automatically start it when needed.
 
 ### 4. **Run Your Project**
 - Simply run the `main.py` file.

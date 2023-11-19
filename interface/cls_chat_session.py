@@ -1,3 +1,5 @@
+from typing import Iterator
+
 from interface.cls_llm_messages import Chat, Role
 from interface.cls_ollama_client import OllamaClient
 
@@ -16,9 +18,9 @@ class ChatSession:
         start_response_with: str = "",
         model="openchat",
         temperature=0.8,
-        stream=False,
+        # stream=False,
         **kwargs,
-    ):
+    ) -> str:
         self.chat.add_message(Role.USER, prompt)
 
         # Call the generate_completion method of the OllamaClient
@@ -27,9 +29,11 @@ class ChatSession:
             prompt=self.chat,
             start_response_with=start_response_with,
             temperature=temperature,
-            stream=stream,
+            # stream=stream,
             **kwargs,
         )
-
+        # if (isinstance(response, str)):
+        #     for msg in response:
+        #         msg
         self.chat.add_message(Role.ASSISTANT, response)
         return response

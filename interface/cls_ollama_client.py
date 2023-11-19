@@ -2,7 +2,8 @@ import json
 import logging
 import os
 import subprocess
-from typing import Any, Dict, Optional
+import time
+from typing import Any, Dict, Iterator, Optional
 
 import requests
 from jinja2 import Template
@@ -11,7 +12,7 @@ from interface.cls_llm_messages import Chat, Role
 
 # Configurations
 BASE_URL = "http://localhost:11434/api"
-TIMEOUT = 240  # Timeout for API requests in seconds
+TIMEOUT = 960  # Timeout for API requests in seconds
 OLLAMA_CONTAINER_NAME = "ollama"  # Name of the Ollama Docker container
 OLLAMA_START_COMMAND = [
     "docker",
@@ -154,7 +155,6 @@ class OllamaClient(metaclass=SingletonMeta):
             else:
                 raise ValueError(f"Unsupported HTTP method: {method}")
 
-            response.raise_for_status()
             return response
         except requests.RequestException as e:
             logger.error(f"Request error: {e}")
@@ -163,7 +163,18 @@ class OllamaClient(metaclass=SingletonMeta):
     def _get_template(self, model: str):
         data = {"name": model}
         response = self._send_request("POST", "show", data).json()
+        if "error" in response:
+            self._download_model(model)
+            response = self._send_request("POST", "show", data).json()
         return response["template"]
+
+    def test_response_time(self, model: str):
+        start_time = time.time()
+        response = self.generate_completion(
+            "Please enumerate all numbers from 0 to 10.",
+            model=model,
+        )
+        print("Time taken:", time.time() - start_time, "seconds")
 
     def generate_completion(
         self,
@@ -172,7 +183,7 @@ class OllamaClient(metaclass=SingletonMeta):
         start_response_with: str = "",
         instruction: str = "Anticipate user needs and conversation directions, responding in a manner that is both informative and practical.",
         temperature: float = 0.8,
-        stream: bool = False,
+        # stream: bool = False,
         **kwargs,
     ) -> str:
         template_str = self._get_template(model)
@@ -198,21 +209,16 @@ class OllamaClient(metaclass=SingletonMeta):
             "prompt": prompt_str,
             "temperature": temperature,
             "raw": bool(instruction),
-            "stream": stream,
+            # "stream": stream,
             **kwargs,
         }
         response = self._send_request("POST", "generate", data)
 
         # Assuming response is a dictionary containing the completion
-        completion = (
-            response.json()
-            if not stream
-            else [
-                json.loads(line.decode("utf-8"))
-                for line in response.iter_lines()
-                if line
-            ]
-        )
+        # if stream:
+        #     return response.iter_lines()
+        # else:
+        completion = response.json()
 
         # Update cache
         self._update_cache(model, temperature, prompt_str, completion)

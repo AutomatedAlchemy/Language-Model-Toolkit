@@ -15,7 +15,7 @@ Welcome to the (Local)-Language-Model-Toolkit, an open-source framework designed
 
 ### 3. **Install and Set Up Ollama with Docker**
 - Ensure Ollama is installed on your system.
-  - To Install Ollama watch this: https://www.youtube.com/watch?v=rIRkxZSn-A8&t=352s
+  - To Install Ollama watch this: `https://www.youtube.com/watch?v=rIRkxZSn-A8`
 - NiceToKnow:
   - The project uses Ollama, running in a Docker container, to manage language models.
   - Ollama is interfaced through its REST API.

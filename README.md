@@ -23,7 +23,7 @@ Welcome to the (Local)-Language-Model-Toolkit, an open-source framework designed
 
 ### 4. **Run Your Project**
 - Simply run the `main.py` file.
-- Ollama manages local language model support, including fetching models from the Ollama model library `https://ollama.ai/library`.
+- Ollama manages local language model support, including fetching models from the Ollama model library https://ollama.ai/library.
 
 ### 5. **Customize Your Project**
 - Start experimenting in the `main.py` file for custom development.

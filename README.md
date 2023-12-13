@@ -5,12 +5,12 @@ Welcome to the (Local)-Language-Model-Toolkit, an open-source framework designed
 ## Getting Started
 
 ### 1. **Install the Required Dependencies**
-- Install necessary dependencies listed in ```requirements.txt```.
-- Use the command: ```pip install -r requirements.txt```.
+- Install necessary dependencies listed in `requirements.txt`.
+- Use the command: `pip install -r requirements.txt`.
 
 ### 2. **Configure Environment**
 - **OpenAI Setup (Optional)**: If you plan to use OpenAI models, insert your OpenAI API key in the `.env` file.
-  - Rename `.env.example` to ```.env```.
+  - Rename `.env.example` to `.env`.
   - Add your OpenAI API key.
 
 ### 3. **Install and Set Up Ollama with Docker**

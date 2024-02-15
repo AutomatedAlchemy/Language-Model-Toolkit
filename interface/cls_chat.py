@@ -1,8 +1,10 @@
 import json
 import math
+import os
 from enum import Enum
 from typing import Dict, List, Tuple
 
+from colorama import Fore, Style
 from jinja2 import Template
 
 
@@ -54,6 +56,7 @@ class Chat:
         return {"internal": internal_arr, "visible": visible_arr}, instruction
 
     def to_jinja2(self, template_str: str) -> str:
+        # Create a template from the corrected string
         template = Template(template_str)
         formatted_message = ""
         # {"system": self.message[0].value, "prompt": self.message[1].value}
@@ -67,3 +70,51 @@ class Chat:
             )
 
         return formatted_message
+
+    def print_chat(self):
+        """
+        Print the chat messages with colored roles.
+        """
+        for role, content in self.messages:
+            if isinstance(role, Role):
+                role_value = role.value
+            else:
+                role_value = role  # Assuming it's a string
+            if role == Role.ASSISTANT or role == Role.SYSTEM:
+                formatted_content = f"{Fore.BLUE}{content}{Style.RESET_ALL}"
+                print(f"{formatted_content} :{role_value}")
+            else:
+                formatted_role = f"{Fore.GREEN}{role_value}{Style.RESET_ALL}"
+                print(f"{formatted_role}: {content}")
+
+    def save_session(self, file_path: str = "./cache/chat_session_main.json"):
+        """Save the Chat instance to a JSON file."""
+        # Create the directory if it doesn't exist
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        # Convert the Chat object to a dictionary and save it as JSON
+        with open(file_path, "w") as file:
+            json.dump(self.to_dict(), file, indent=4)
+
+    @classmethod
+    def load(cls, file_path):
+        """Load a Chat instance from a JSON file."""
+        with open(file_path, "r") as file:
+            data_dict = json.load(file)
+        return cls.from_dict(data_dict)
+
+    def to_dict(self):
+        return {
+            "messages": [
+                {"role": role.value, "content": content}
+                for role, content in self.messages
+            ]
+        }
+
+    @classmethod
+    def from_dict(cls, data_dict):
+        chat_instance = cls()
+        for message in data_dict["messages"]:
+            role = Role[message["role"].upper()]
+            content = message["content"]
+            chat_instance.add_message(role, content)
+        return chat_instance

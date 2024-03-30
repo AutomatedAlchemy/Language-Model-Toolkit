@@ -70,8 +70,3 @@ Contributions are welcome! Please feel free to submit pull requests, report bugs
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for more details.
-
-## Acknowledgments
-
-- Thanks to the developers and contributors who made this project possible.
-- Special thanks to OpenAI for providing the API and support for conversational AI research and development.

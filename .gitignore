@@ -1,2 +1,2 @@
 .env
-ollama_cache.json
+*cache*

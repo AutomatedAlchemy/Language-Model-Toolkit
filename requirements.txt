@@ -1,7 +1,7 @@
 matplotlib==3.7.2
 networkx==3.1
 openai
-torch==2.0.1
+torch==2.2.0
 transformers
 websockets==11.0.3
 python-dotenv
